@@ -8,6 +8,11 @@ public class BankAccount {
         this.balance = balance;
     }
 
+    public BankAccount(double balance, Individual owner) {
+        this.balance = balance;
+        this.owner = owner;
+    }
+
     public double getBalance() {
         return balance;
     }
