@@ -5,9 +5,12 @@ public class Individual {
     private String name;
     private int age;
 
+    public Individual(String name) {
+        this.name = name;
+    }
+
     public Individual(String name, int age) {
         this.name = name;
-        this.age = age;
     }
 
     public String getName() {

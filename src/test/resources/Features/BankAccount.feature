@@ -1,10 +1,9 @@
 Feature: Bank account
 
-  Scenario Outline: Account holder checks the balance
+  Scenario Outline: Account overdrawn status
     Given the account has a balance of <balance>
-    When the <owner> checks the <balance>
-    Then the balance should be <balance>
+    When the account holder checks if the account is overdrawn
+    Then the account should be overdrawn
     Examples:
-      | balance | owner |
-      | 100.00  |"Liza" |
-      | 1400.00 |"Lola" |
+      | balance |
+      | -50.00  |
