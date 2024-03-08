@@ -3,6 +3,7 @@ package com.mybank;
 public class BankAccount {
     private double balance;
     private Individual owner;
+    private InterestCalculationBalance interestCalculationStrategy;
 
     public BankAccount(double balance) {
         this.balance = balance;
