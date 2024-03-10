@@ -37,7 +37,7 @@ public class MyStepdefs {
     }
 
     @Given("the account has an owner whose name is {string} and has an age of {int}")
-    public void the_account_has_an_owner_whose_name_is_manel_and_has_an_age_of(String name, int age) {
+    public void the_account_has_an_owner_whose_name_is_given_and_has_an_age_of(String name, int age) {
         owner = new Individual(name, age);
         account = new BankAccount(200, owner);
     }
@@ -52,4 +52,8 @@ public class MyStepdefs {
         assertTrue(account.isOwnerMajor());
     }
 
+    @Then("the owner should not be major")
+    public void theOwnerShouldNotBeMajor() {
+        assertFalse(account.isOwnerMajor());
+    }
 }

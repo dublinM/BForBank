@@ -23,3 +23,14 @@ Feature: Bank account
     Examples:
       | name | age |
       | "Manel" | 65 |
+      | "Kamelia" | 18 |
+
+
+  Scenario Outline: Check if owner of account is not major
+    Given the account has an owner whose name is <name> and has an age of <age>
+    When the bank checks if the owner is major
+    Then the owner should not be major
+    Examples:
+      | name | age |
+      | "Manel" | 17 |
+      | "Kamelia" | 15 |
