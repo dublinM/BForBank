@@ -9,6 +9,10 @@ public class BankAccount {
         this.balance = balance;
     }
 
+    public BankAccount(Individual owner) {
+        this.owner = owner;
+    }
+
     public BankAccount(double balance, Individual owner) {
         this.balance = balance;
         this.owner = owner;
@@ -36,5 +40,20 @@ public class BankAccount {
 
     public boolean isOwnerMajor() {
         return owner.getAge() >= 18;
+    }
+
+    public double credit(double amount) {
+        this.balance += amount;
+        return this.balance;
+    }
+
+    public double debit(double amount) {
+        this.balance -= amount;
+        return this.balance;
+    }
+
+    public void wire (double amount, BankAccount sender, BankAccount receiver) {
+        sender.debit(amount);
+        receiver.credit(amount);
     }
 }
