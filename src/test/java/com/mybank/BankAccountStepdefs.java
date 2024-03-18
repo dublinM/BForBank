@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/features", glue = "com.mybank")
-public class MyStepdefs {
+public class BankAccountStepdefs {
     private BankAccount account;
     private Individual owner;
 
