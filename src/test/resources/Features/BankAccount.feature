@@ -49,3 +49,4 @@ Feature: Bank account
         Examples:
           | balance | amount |
           | 10      | 2500   |
+

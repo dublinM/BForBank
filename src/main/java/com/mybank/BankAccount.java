@@ -5,8 +5,12 @@ public class BankAccount {
     private Individual owner;
     private InterestCalculationBalance interestCalculationStrategy;
 
+
+
     public BankAccount(double balance) {
         this.balance = balance;
+        // Définir une stratégie par défaut si nécessaire
+        this.interestCalculationStrategy = new CheckingAccountInterestStrategy();
     }
 
     public BankAccount(Individual owner) {
@@ -34,6 +38,14 @@ public class BankAccount {
         this.owner = owner;
     }
 
+    public InterestCalculationBalance getInterestCalculationStrategy() {
+        return interestCalculationStrategy;
+    }
+
+    public void setInterestCalculationStrategy(InterestCalculationBalance strategy) {
+        this.interestCalculationStrategy = strategy;
+    }
+
     public boolean isOverdrawn() {
         return balance < 0;
     }
@@ -56,4 +68,10 @@ public class BankAccount {
         sender.debit(amount);
         receiver.credit(amount);
     }
+
+    public void addInterest() {
+        double interest = interestCalculationStrategy.calculateInterest(balance);
+        balance += interest;
+    }
+
 }

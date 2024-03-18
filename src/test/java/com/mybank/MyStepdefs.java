@@ -86,6 +86,4 @@ public class MyStepdefs {
     public void theAccountShouldHaveMoreMoneyInHisBankAccount() {
         assertEquals(2510, account.getBalance(), 0.01);
     }
-
-
 }
