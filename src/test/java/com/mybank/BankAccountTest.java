@@ -1,9 +1,60 @@
 package com.mybank;
 
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class BankAccountTest {
+
+    private BankAccount account;
+    private Individual owner;
+
+    @Before
+    public void setUp() {
+        owner = new Individual("John", 30);
+        account = new BankAccount(owner);
+    }
+
+    @Test
+    public void testConstructorWithBalance() {
+        BankAccount account = new BankAccount(1000.0);
+        assertEquals(1000.0, account.getBalance(), 0.001);
+    }
+
+    @Test
+    public void testConstructorWithOwner() {
+        assertEquals(owner, account.getOwner());
+    }
+
+    @Test
+    public void testConstructorWithBalanceAndOwner() {
+        BankAccount account = new BankAccount(2000.0, owner);
+        assertEquals(2000.0, account.getBalance(), 0.001);
+        assertEquals(owner, account.getOwner());
+    }
+
+    @Test
+    public void testGetBalance() {
+        assertEquals(0.0, account.getBalance(), 0.001);
+    }
+
+    @Test
+    public void testSetBalance() {
+        account.setBalance(500.0);
+        assertEquals(500.0, account.getBalance(), 0.001);
+    }
+
+    @Test
+    public void testGetOwner() {
+        assertEquals(owner, account.getOwner());
+    }
+
+    @Test
+    public void testSetOwner() {
+        Individual newOwner = new Individual("Alice", 25);
+        account.setOwner(newOwner);
+        assertEquals(newOwner, account.getOwner());
+    }
 
     @Test
     public void testIsOverdrawn() {
@@ -53,14 +104,28 @@ public class BankAccountTest {
 
     @Test
     public void testWire() {
-        Individual sender = new Individual("Manel");
-        Individual receiver = new Individual("Kamelia");
-        BankAccount accountSender = new BankAccount(2000, sender);
-        BankAccount accountReceiver = new BankAccount(0, receiver);
-        accountSender.wire(1000, accountSender, accountReceiver);
-//        assertEquals(1000, accountSender.getBalance(), 0.01);
-        assertEquals(1000, accountReceiver.getBalance(), 0.01);
+        BankAccount sender = new BankAccount(1000.0);
+        BankAccount receiver = new BankAccount(0.0);
+        account.wire(500.0, sender, receiver);
+        assertEquals(500.0, sender.getBalance(), 0.001);
+        assertEquals(500.0, receiver.getBalance(), 0.001);
+    }
 
+
+    @Test
+    public void testAddInterest() {
+        InterestCalculationBalance strategy = new CheckingAccountInterestStrategy();
+        account = new BankAccount(1000.0, strategy);
+        account.addInterest();
+        assertEquals(1010, account.getBalance(), 0.001);
+    }
+
+    @Test
+    public void testAddSavingInterest() {
+        InterestCalculationBalance strategy = new SavingsAccountInterestStrategy();
+        account = new BankAccount(1000.0, strategy);
+        account.addInterest();
+        assertEquals(1030, account.getBalance(), 0.001);
     }
 
 }

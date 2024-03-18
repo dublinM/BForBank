@@ -6,11 +6,8 @@ public class BankAccount {
     private InterestCalculationBalance interestCalculationStrategy;
 
 
-
     public BankAccount(double balance) {
         this.balance = balance;
-        // Définir une stratégie par défaut si nécessaire
-        this.interestCalculationStrategy = new CheckingAccountInterestStrategy();
     }
 
     public BankAccount(Individual owner) {
@@ -20,6 +17,17 @@ public class BankAccount {
     public BankAccount(double balance, Individual owner) {
         this.balance = balance;
         this.owner = owner;
+    }
+
+    public BankAccount(double balance,InterestCalculationBalance strategy) {
+        this.balance = balance;
+        this.interestCalculationStrategy = strategy;
+    }
+
+    public BankAccount(double balance, Individual owner, InterestCalculationBalance strategy) {
+        this.balance = balance;
+        this.owner = owner;
+        this.interestCalculationStrategy = strategy;
     }
 
     public double getBalance() {
