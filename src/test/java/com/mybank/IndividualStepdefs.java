@@ -30,10 +30,7 @@ public class IndividualStepdefs {
     }
 
     @And("the age should be {int}")
-    public void theAgeShouldBe(int age) {
-        assertEquals(age, individual.getAge());
-    }
-
+    public void theAgeShouldBe(int age) { assertEquals(age, individual.getAge());}
 
     @When("I update the name to {string}")
     public void iUpdateTheNameToNewName(String newName) {
