@@ -31,6 +31,7 @@ public class IndividualStepdefs {
 
     @And("the age should be {int}")
     public void theAgeShouldBe(int age) {
+        assertEquals(age, individual.getAge());
     }
 
 
